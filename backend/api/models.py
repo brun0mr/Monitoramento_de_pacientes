@@ -34,6 +34,6 @@ class Sensor(models.Model):
     Pressao = models.FloatField(max_length=10, blank=True)
     Oxigenacao = models.FloatField(max_length=10, blank=True)
     Frequencia_Cardiaca = models.FloatField(max_length=10, blank=True)
-    Data_Hora2 = models.TimeField()
+    Data_Hora = models.TimeField()
 
     
