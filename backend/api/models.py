@@ -30,11 +30,14 @@ class Paciente(models.Model):
     Id_Medico =  models.ForeignKey(Medico, on_delete=models.CASCADE)
     
 class Sensor(models.Model):
+    Id_Sensor= models.BigAutoField(primary_key=True)
     Temperatura = models.FloatField(max_length=10, blank=True)
     Pressao = models.FloatField(max_length=10, blank=True)
     Oxigenacao = models.FloatField(max_length=10, blank=True)
     Frequencia_Cardiaca = models.FloatField(max_length=10, blank=True)
-    Data_Hora = models.TimeField()
+    Data_Hora = models.DateTimeField()
+    Id_Medico =  models.ForeignKey(Medico, on_delete=models.CASCADE)
+    Id_Paciente = models.OneToOneField(Paciente, on_delete=models.CASCADE)
     
 
     
