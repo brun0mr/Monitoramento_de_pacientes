@@ -1,0 +1,22 @@
+.Contact_container{
+    position: fixed;
+    left: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: calc(100% - 250px);
+    background-color: black;
+    background-image: url('https://static.vecteezy.com/ti/fotos-gratis/p1/2169276-blur-hospital-and-clinic-interior-gr%C3%A1tis-foto.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.Contact_text{
+    height: 500px;
+    width: calc(100% - 200px);
+    display: flex;
+    text-align: justify;
+    align-items: center;
+}

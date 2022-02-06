@@ -1,0 +1,116 @@
+.page-l_sensores{
+    position: fixed;
+    left: 250px;
+    background-color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    width: calc(100% - 250px);
+    height: 100%;
+}
+
+.grid-container-l_sensores {
+    display: grid;
+    grid-template-columns: 128px 30% 128px 30% 128px auto;
+    grid-gap: 0.5%;
+    padding: 0.3%;
+}
+
+.grid-container-l_sensores > .item {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.8);
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    padding-top: 4px;
+    font-size: 100%;
+}
+.grid-container-l_sensores > .button {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.8);
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    padding-top: 4px;
+    font-size: 100%;
+}
+
+.patient_row-l_sensores{
+    position: absolute;
+    width: 100%;
+    top: 200px;
+    height: calc(100% - 200px);
+    overflow-y: scroll;
+}
+
+.background_window{
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.61);
+    height: 100vh;
+    width: 100vw;
+}
+
+.window_body_add_form{
+    position: absolute;
+    --heightA: 150px;
+    --half_height: calc(var(--heightA)/2);
+    top: calc(50vh - var(--half_height));
+    height: var(--heightA);
+    background-color: pink;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    border: 1px solid black;
+}
+.window_body_add_form .div1{
+    text-align: right;
+    padding: 5px;
+}
+.window_body_add_form .div2{
+    text-align: center;
+}
+.window_body_add_form input{
+    margin-left: 5px;
+}
+
+.window_body {
+    position: absolute;
+    --heightA: 150px;
+    --half_height: calc(var(--heightA)/2);
+    top: calc(50vh - var(--half_height));
+    height: var(--heightA);
+    background-color: pink;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    border: 1px solid black;
+}
+.window_body label{
+    padding-right: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+.window_body .Button_submit{
+    margin-left: 10px;
+}
+.window_body select{
+    padding-top: 4px;
+    padding-bottom: 4px;
+    height: auto;
+}
+.window_body form{
+    display: flex;
+    align-items: center;
+}
+
+.op_lista-l_sensores{
+    position: fixed;
+    top: 100px;
+    display: flex;
+}
+
+.op_lista-l_sensores > Button{
+    margin-left: 15px;
+    margin-right: 15px;
+}

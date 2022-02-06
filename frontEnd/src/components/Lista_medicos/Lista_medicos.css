@@ -1,0 +1,64 @@
+.page-l_medicos{
+    position: fixed;
+    left: 250px;
+    background-color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    width: calc(100% - 250px);
+    height: 100%;
+}
+
+.grid-container-l_medicos {
+    display: grid;
+    grid-template-columns: 128px 30% 20% 20% auto;
+    grid-gap: 0.5%;
+    padding: 0.3%;
+}
+
+.grid-container-l_medicos > .item {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.8);
+    height: 128px;
+    align-items: center;
+    justify-content: center;
+    padding-top: 4px;
+    font-size: 100%;
+}
+.button_l {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.8);
+    height: 128px;
+    align-items: center;
+    justify-content: center;
+    padding-top: 4px;
+    font-size: 100%;
+}
+
+.button_l Button{
+    margin: 0px 5px 0px 5px;
+}
+
+.patient_row-l_medicos{
+    position: absolute;
+    width: 100%;
+    top: 100px;
+    height: calc(100% - 100px);
+    overflow-y: scroll;
+}
+
+.img_profile{
+    width: 128px;
+    height: 128px;
+}
+
+.op_lista-l_medicos{
+    position: fixed;
+    top: 100px;
+    display: flex;
+}
+
+.op_lista-l_medicos > Button{
+    margin-left: 15px;
+    margin-right: 15px;
+}

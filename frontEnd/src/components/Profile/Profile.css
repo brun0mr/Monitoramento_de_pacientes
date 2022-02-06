@@ -1,0 +1,40 @@
+.page-prof{
+    position: fixed;
+    left: 250px;
+    height: 100%;
+    width: calc(100% - 250px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    background-image: url('https://c.neh.tw/thumb/f/720/4669821574709248.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.img_profile{
+    width:256px;
+    height:256px;
+}
+
+.body-profile{
+    background-color: antiquewhite;
+    height: fit-content;
+    width: fit-content;
+    display: flex;
+    padding: 50px;
+    position: inherit;
+}
+
+.col-left-prof{
+    margin-right: 50px;
+    display: flex;
+    align-self: center;
+}
+.col-right-prof{
+    margin-left: 50px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}

@@ -1,0 +1,23 @@
+.Register_container{
+    position: fixed;
+    left: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: calc(100% - 250px);
+    background-color: black;
+    background-image: url('https://img.freepik.com/fotos-gratis/desfocar-fundo-de-passagem-de-hospital-branco-curto_7180-2422.jpg?size=626&ext=jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.Register{
+    background-color: antiquewhite;
+    height: 100%;
+    padding: 50px 50px 50px 50px;
+    width: 400px;
+    overflow: scroll;
+}
+

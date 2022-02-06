@@ -1,0 +1,22 @@
+.alerts_container{
+    position: fixed;
+    left: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: calc(100% - 250px);
+    background-color: black;
+    background-image: url('https://image.freepik.com/fotos-gratis/vista-de-fundo-abstrata-do-fundo-abstrato-borrada-em-direcao-ao-vazio-do-lobby-do-escritorio-e-portas-de-entrada-e-cortina-de-vidro-com-quadro_1339-6364.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.alerts_text{
+    height: 500px;
+    width: calc(100% - 200px);
+    display: flex;
+    text-align: justify;
+    align-items: center;
+}

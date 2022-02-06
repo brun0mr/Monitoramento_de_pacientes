@@ -1,0 +1,26 @@
+.home_container{
+    position: fixed;
+    left: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: calc(100% - 250px);
+    background-color: black;
+    background-image: url('https://st3.depositphotos.com/2807103/37130/i/450/depositphotos_371304710-stock-photo-abstract-medical-background-design-blurred.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.home_text{
+    height: 500px;
+    display: flex;
+    text-align: justify;
+    align-items: center;
+}
+
+.Button_Home{
+    height: 100px;
+    width: 100px;
+}

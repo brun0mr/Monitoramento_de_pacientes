@@ -1,0 +1,79 @@
+.page{
+    position: fixed;
+    left: 250px;
+    background-color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    width: calc(100% - 250px);
+    height: 100%;
+    overflow-x: scroll;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 10% 31.5% 14% 14% 14% 14%;
+    grid-gap: 0.5%;
+    padding: 0.3%;
+}
+
+.grid-container > div {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding-top: 4px;
+    font-size: 100%;
+    height: 35px;
+}
+
+.patient_row{
+    overflow-y: scroll;
+    height: calc(100% - 200px);
+    /* min-width: 70%; */
+    width: 100%;
+    position: absolute;
+    top: 200px;
+    align-items: center;
+}
+
+.op_lista{
+    position: fixed;
+    top: 100px;
+    display: flex;
+}
+
+.op_lista > Button{
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+
+
+.background_add_form{
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.61);
+    height: 100vh;
+    width: 100vw;
+}
+
+.add_form {
+    position: absolute;
+    --heightA: 150px;
+    --half_height: calc(var(--heightA)/2);
+    top: calc(50vh - var(--half_height));
+    height: var(--heightA);
+    background-color: pink;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    border: 1px solid black;
+}
+
+.add_form div{
+    text-align: center;
+}
+.add_form .Button_submit{
+    margin-top: 10px;
+}
+.add_form label{
+    padding-right: 10px;
+}

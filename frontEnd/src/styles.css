@@ -1,0 +1,25 @@
+.body-a {
+    /* position: absolute;
+    left: 0;
+    top: 0;
+    font-family: sans-serif;
+    text-align: center;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center; */
+    width: 100vw;
+    height: 100vh;
+}
+
+.test{
+    margin: 0;
+    width: 50vw;
+    justify-content: center;
+}
+
+.content{
+    position: absolute;
+    left: 250px;
+}
+  
