@@ -13,6 +13,8 @@ class Medico(models.Model):
     Endereco =  models.CharField(max_length=255,blank=False)
     Usuario =    models.CharField(max_length=255,blank=False, unique=True)
     Senha =     models.CharField(max_length=50)
+    def __str__ (self):
+        return self.Id_Medico
     
 class Paciente(models.Model):
     Id_paciente = models.BigAutoField(primary_key=True)
@@ -28,11 +30,15 @@ class Paciente(models.Model):
     Usuario =    models.CharField(max_length=255,blank=False, unique=True)
     Senha =      models.CharField(max_length=50)
     Id_Medico =  models.ForeignKey(Medico, on_delete=models.CASCADE)
+    def __str__ (self):
+        return self.Id_paciente
     
 class Sensor(models.Model):
     Id_Sensor= models.BigAutoField(primary_key=True)
     Id_Medico =  models.ForeignKey(Medico, on_delete=models.CASCADE)
     Id_Paciente = models.OneToOneField(Paciente, on_delete=models.CASCADE)
+    def __str__ (self):
+        return self.Id_Sensor
     
 class Dados(models.Model):
     Id_Sensor= models.ForeignKey(Sensor,on_delete=models.CASCADE, primary_key=True)
@@ -41,3 +47,5 @@ class Dados(models.Model):
     Oxigenacao = models.FloatField(max_length=10, blank=True)
     Frequencia_Cardiaca = models.FloatField(max_length=10, blank=True)
     Data_Hora = models.DateTimeField()
+    def __str__ (self):
+        return self.Id_Sensor
