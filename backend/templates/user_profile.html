@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Área protegida</title>
+</head>
+<body>
+    <h1>Sou uma área super protegida!!! Só para usuários logados!!!!</h1>
+    <h2>Usuário que fez login: {{ user.get_full_name|default:user.username }}</h2>
+    <a href="{% url 'accounts:user_logout' %}">Fazer Logout</a>
+</body>
+</html>

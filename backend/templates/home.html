@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Django Login Via Email</title>
+</head>
+<body>
+    <h1>Cadastro de Usuário</h1>
+    {% if messages %}
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    {% endif %}
+    <form action="." method="post" autocomplete="off">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Criar conta</button>       
+    </form>
+</body>
+</html>
