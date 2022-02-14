@@ -32,6 +32,7 @@ class SensorView (generics.ListCreateAPIView):
 
 @csrf_exempt
 def login_api(request):
+    print(request.body)
     result = {'status': 'failed', 'token': ''}
     if request.method == 'POST':
         dados_recebidos = json.loads(request.body)
@@ -77,42 +78,38 @@ def disconnect(request):
 
 @csrf_exempt
 def receive_data(request):
-    
-    if request.method == 'POST':
-        # Id_Sensor = "1"
-        # temp = randint(36, 42)
-        # bpm = randint(60,130)
-        # oxi = randint(80, 100)
-        # pressao = randint(400, 500)
+    print(request.body)
+    # dados = json.loads(request.body)
+    # if request.method == 'POST':
+    #     print(dados)
+    #     temp = dados['Temperatura']
+    #     bpm = dados['Frequencia_Cardiaca']
+    #     oxi = dados['Oxigenacao']
+    #     pressao = dados['Pressao']
+    #     Id_Sensor = dados['Id_Sensor']
+    #     Data_Hora = dados['Data_Hora']
+    #     print('ok0')
+    #     try:
+    #         sensor = Sensor.objects.get(Id_Sensor=Id_Sensor)
+    #         print('ok1.1')
+    #         if (sensor):
+    #             Dados.objects.create(
+    #                 Id_Sensor = sensor,
+    #                 Temperatura=temp,
+    #                 Pressao = pressao,
+    #                 Oxigenacao=oxi,
+    #                 Frequencia_Cardiaca = bpm,
+    #                 Data_Hora=datetime.datetime.now()
+    #             )
+    #             print('ok1')
+    #     except:
+    #         print('erro sensor')
+    #         return JsonResponse({"ok":"False"})
 
 
-        dados = json.loads(request.body)
-        temp = dados['Temperatura']
-        bpm = dados['Frequencia_Cardiaca']
-        oxi = dados['Oxigenacao']
-        pressao = dados['Pressao']
-        Id_Sensor = dados['Id_Sensor']
-        Data_Hora = dados['Data_Hora']
-        print('ok0')
-        try:
-            sensor = Sensor.objects.get(Id_Sensor=Id_Sensor)
-        except:
-            print('erro sensor')
 
-        print('ok1')
-        Dados.objects.create(
-            Id_Sensor = sensor,
-            Temperatura=temp,
-            Pressao = pressao,
-            Oxigenacao=oxi,
-            Frequencia_Cardiaca = bpm,
-            Data_Hora=datetime.datetime.now(),
-        )
-        print('ok2')
-        Dados.objects.create()
-
-        print('ok3')
-    return JsonResponse({})
+    #     print('ok3')
+    return JsonResponse({"ok":"True"})
 
 @csrf_exempt
 def lista_paciente(request):
