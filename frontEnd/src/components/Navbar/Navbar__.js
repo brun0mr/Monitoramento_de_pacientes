@@ -11,12 +11,12 @@ export default function Navbar__(){
     const Disconnect = async function(){
       const response = await fetch('http://127.0.0.1:8000/api/disconnect/', {
           method: "POST",
-          body: JSON.stringify({token: Cookies.get('token')})
+          body: JSON.stringify({username: Cookies.get('username'), token: Cookies.get('token')})
       });
-      Cookies.remove('username');
-      Cookies.remove('user_id');
-      Cookies.set('isLoggedIn', false);
-      Cookies.remove('token');   
+      // Cookies.remove('username');
+      // Cookies.remove('user_id');
+      // Cookies.set('isLoggedIn', false);
+      // Cookies.remove('token');   
     }
 
     return (

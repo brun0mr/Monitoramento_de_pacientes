@@ -66,9 +66,13 @@ def disconnect(request):
     if request.method == 'POST':
         dados = json.loads(request.body)
         token = dados['token']
+        user = dados['username']
+        print(user)
         try:
-            x = Token.objects.get(token=token)
-            x.delete()
+            user__ = User.objects.get(username=user)
+            x = Token.objects.get(user=user__)
+            if str(x) == token:
+                x.delete()
         except:
             x = None
     return JsonResponse({})
