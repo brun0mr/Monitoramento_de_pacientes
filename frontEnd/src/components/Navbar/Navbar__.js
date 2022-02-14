@@ -13,10 +13,10 @@ export default function Navbar__(){
           method: "POST",
           body: JSON.stringify({username: Cookies.get('username'), token: Cookies.get('token')})
       });
-      // Cookies.remove('username');
-      // Cookies.remove('user_id');
-      // Cookies.set('isLoggedIn', false);
-      // Cookies.remove('token');   
+      Cookies.remove('username');
+      Cookies.remove('user_id');
+      Cookies.set('isLoggedIn', false);
+      Cookies.remove('token');   
     }
 
     return (

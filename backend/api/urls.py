@@ -8,5 +8,5 @@ urlpatterns = [
     path('sensor', SensorView.as_view()),
     path('login/', views.login_api),
     path('disconnect/', views.disconnect),
-    path('teste/', views.teste)
+    path('lista_paciente/', views.lista_paciente)
 ]

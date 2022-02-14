@@ -1,22 +1,16 @@
-from distutils.log import Log
-from django.http import HttpRequest, HttpResponse
+
 from rest_framework import generics
 from django.views.decorators.csrf import csrf_exempt
 from .serializers import MedicoSerializer, DadosSerializer, PacienteSerializer, SensorSerializer
 from .models import Dados, Medico, Paciente, Sensor
-
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from rest_framework.authtoken.serializers import AuthTokenSerializer
 import json
 from django.http import JsonResponse
 
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
 from .models import Medico
 
-from django.shortcuts import redirect, render
+from random import randint
 
 # Create your views here.
 
@@ -41,10 +35,8 @@ def login_api(request):
     result = {'status': 'failed', 'token': ''}
     if request.method == 'POST':
         dados_recebidos = json.loads(request.body)
-        # print(dados_recebidos)
         check_user = dados_recebidos['username']
         check_pass = dados_recebidos['password']
-        # print("%s %s" % (check_user, check_pass))
         try:
             user = User.objects.get(username=check_user)
         except:
@@ -56,7 +48,6 @@ def login_api(request):
             a = Medico.objects.get(Usuario=check_user)
             a.Token = str(token)
             a.save()
-            print('ok1')
             result = ({'status': 'connected','token': str(token)})
     print(result)
     return JsonResponse(result)
@@ -77,5 +68,12 @@ def disconnect(request):
             x = None
     return JsonResponse({})
 
-def teste(request):
-    return HttpResponse('123');
+@csrf_exempt
+def lista_paciente(request):
+    # if request.method == 'POST':
+    pacientes = Paciente.objects.all()
+    l = {}
+    for paciente in pacientes:
+        l[paciente.Nome] = str([0,randint(36, 42),randint(60,130),randint(80, 100), randint(400, 500)])
+    return JsonResponse(l)
+

@@ -7,7 +7,7 @@ import { BrowserRouter as Router,Routes, Route } from 'react-router-dom';
 
 export default function Lista_pacientes(){
 
-  const [loaded_data, set_loaded_data] = useState({data: ''}); // lista de pacientes quando carregado do backend será guardado aqui
+  const [loaded_data, set_loaded_data] = useState([]); // lista de pacientes quando carregado do backend será guardado aqui
   const [show_add_window, set_show_add_window] = useState(false); // estado verdadeiro ou falso para mostrar a janela de adicionar pacientes
   const [_p_n_attached_list, set_p_n_attached_list] = useState(); // pacientes que não estão sendo monitorados
   const [_s_n_attached_list, set_s_n_attached_list] = useState(); // sensores que não estão sendo monitorados
@@ -33,20 +33,33 @@ export default function Lista_pacientes(){
   };
   // carrega lista
   const load_data = async () => {
-    const response = await fetch("http://127.0.0.1:8000/api/json_response/");
+    const response = await fetch("http://127.0.0.1:8000/api/lista_paciente/", {
+      method: "POST",
+      body: JSON.stringify({})
+    });
     const data_a = await response.json();
-    set_loaded_data({data: data_a});
+    // console.log(data_a);
+    let data__ = [['id', 'Nome', 'ºC', 'BPM', 'SaO2', 'mmHg']];
+    for(let i in data_a){
+      let x = JSON.parse("[" + data_a[i] + "]")[0];
+      let add = [x[0], i, x[1], x[2], x[3], x[4]];
+      data__.push(add);
+    }
+    // console.log(data__);
+    set_loaded_data(data__);
+    // console.log(loaded_data);
   };
   // dados do carregar lista devem ser periodicamente recarregados
   const update_content = () => {
+    load_data();
     setInterval(()=>{
       load_data();
-    }, 1000);
+    }, 5000);
   }
 
-  // useEffect(() => {
-  //   update_content();
-  // }, []);
+  useEffect(() => {
+    update_content();
+  }, []);
 
   
   let patient_opt = p_n_attached_list.map((x) => (
@@ -57,7 +70,8 @@ export default function Lista_pacientes(){
   ));
 
 // dos dados da lista, organizar o jsx
-let linhas_lista = dados.map((x) => (
+console.log(loaded_data);
+let linhas_lista = loaded_data.map((x) => (
   <div className="grid-container">
     <div className="item1">{x[0]}</div>
     {
