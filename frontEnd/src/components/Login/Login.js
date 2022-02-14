@@ -20,7 +20,7 @@ export default function Login(){
       });
 
       const data = await response.json();
-      console.log(data.status);
+      console.log(data);
       if(data.status == 'failed'){
         setSubmissionAns('failed');
       }
@@ -29,6 +29,7 @@ export default function Login(){
         setSubmissionAns('success');
         Cookies.set('username', user);
         Cookies.set('isLoggedIn', '1');
+        Cookies.set('medico', data.medico);
         Cookies.set('token', data.token);
         navigate('/'); 
       }

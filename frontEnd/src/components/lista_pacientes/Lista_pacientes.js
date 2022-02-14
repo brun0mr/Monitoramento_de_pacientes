@@ -35,7 +35,7 @@ export default function Lista_pacientes(){
   const load_data = async () => {
     const response = await fetch("http://127.0.0.1:8000/api/lista_paciente/", {
       method: "POST",
-      body: JSON.stringify({})
+      body: JSON.stringify({token: Cookies.get('token')})
     });
     const data_a = await response.json();
     // console.log(data_a);

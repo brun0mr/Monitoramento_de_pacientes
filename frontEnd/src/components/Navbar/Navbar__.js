@@ -1,5 +1,6 @@
 import { Nav, NavItem, NavLink } from "reactstrap";
 import { NavbarBrand, Button } from "reactstrap";
+import { Navigate, useNavigate } from "react-router-dom";
 import React from "react";
 import './Navbar__.css';
 import SubMenu from "./SubMenu.js";
@@ -8,15 +9,18 @@ import AuthContext, { useAuth } from "../../context/auth-context";
 import Cookies from "js-cookie";
 
 export default function Navbar__(){
+    let navigate = useNavigate();
     const Disconnect = async function(){
       const response = await fetch('http://127.0.0.1:8000/api/disconnect/', {
           method: "POST",
           body: JSON.stringify({username: Cookies.get('username'), token: Cookies.get('token')})
       });
-      Cookies.remove('username');
+      Cookies.set('username', 'Visitante');
       Cookies.remove('user_id');
       Cookies.set('isLoggedIn', false);
-      Cookies.remove('token');   
+      Cookies.set('medico', '0');
+      Cookies.remove('token');  
+      navigate('/');  
     }
 
     return (
@@ -43,7 +47,9 @@ export default function Navbar__(){
             </NavLink>
           </NavItem>
 
-          <SubMenu title="Listar" subs={submenus[0]}></SubMenu>
+          {Cookies.get("isLoggedIn") == 1 && (
+            <SubMenu title="Listar" subs={submenus[0]}></SubMenu>
+          )}
 
           <NavItem>
             <NavLink href="/relatorios">
@@ -69,14 +75,16 @@ export default function Navbar__(){
               </p>
             </NavLink>
           </NavItem>
-          <NavItem>
-            <NavLink href="/login/">
-              <p className="Navlink_p">
-                {" "}
-                <IoIosLogIn /> Entrar
-              </p>
-            </NavLink>
-          </NavItem>
+          {Cookies.get("isLoggedIn") != 1 && (
+            <NavItem>
+              <NavLink href="/login/">
+                <p className="Navlink_p">
+                  {" "}
+                  <IoIosLogIn /> Entrar
+                </p>
+              </NavLink>
+            </NavItem>
+          )}
           <NavItem>
             <NavLink href="/Contact">
               <p className="Navlink_p">
@@ -97,13 +105,26 @@ export default function Navbar__(){
 
           {Cookies.get("username") != "" && (
             <>
-              <br/>
-              <Button className="Button-nav-bottom" color="secondary" href="/paciente/dados">
-                Perfil
-              </Button>
-              <Button className="Button-nav-bottom" color="danger" href="/" onClick={Disconnect}>
-                Desconectar
-              </Button>
+              <br />
+
+              {Cookies.get("isLoggedIn") == 1 && (
+                <Button
+                  className="Button-nav-bottom"
+                  color="secondary"
+                  href="/paciente/dados"
+                >
+                  Perfil
+                </Button>
+              )}
+              {Cookies.get("isLoggedIn") == 1 && (
+                <Button
+                  className="Button-nav-bottom"
+                  color="danger"
+                  onClick={Disconnect}
+                >
+                  Desconectar
+                </Button>
+              )}
             </>
           )}
         </div>

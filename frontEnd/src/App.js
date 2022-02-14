@@ -28,6 +28,7 @@ export default function App() {
     Cookies.set('username', 'Visitante');
     Cookies.set('user_id', '');
     Cookies.set('isLoggedIn', false);
+    Cookies.set('medico', '0');
     Cookies.set('token', '');
   }
 
