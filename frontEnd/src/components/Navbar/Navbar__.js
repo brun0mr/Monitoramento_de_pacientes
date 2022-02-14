@@ -8,7 +8,11 @@ import AuthContext, { useAuth } from "../../context/auth-context";
 import Cookies from "js-cookie";
 
 export default function Navbar__(){
-    const Disconnect = function(){
+    const Disconnect = async function(){
+      const response = await fetch('http://127.0.0.1:8000/api/disconnect/', {
+          method: "POST",
+          body: JSON.stringify({token: Cookies.get('token')})
+      });
       Cookies.remove('username');
       Cookies.remove('user_id');
       Cookies.set('isLoggedIn', false);

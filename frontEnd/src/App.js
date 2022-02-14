@@ -25,7 +25,7 @@ import Contact from "./components/Contact/Contact";
 export default function App() {
 
   if(Cookies.get('username') == undefined){
-    Cookies.set('username', 'Teste');
+    Cookies.set('username', 'Visitante');
     Cookies.set('user_id', '');
     Cookies.set('isLoggedIn', false);
     Cookies.set('token', '');

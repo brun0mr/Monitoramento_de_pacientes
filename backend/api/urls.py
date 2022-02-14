@@ -7,5 +7,6 @@ urlpatterns = [
     path('paciente', PacienteView.as_view()),
     path('sensor', SensorView.as_view()),
     path('login/', views.login_api),
+    path('disconnect/', views.disconnect),
     path('teste/', views.teste)
 ]

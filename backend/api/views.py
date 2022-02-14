@@ -61,5 +61,17 @@ def login_api(request):
     print(result)
     return JsonResponse(result)
 
+@csrf_exempt
+def disconnect(request):
+    if request.method == 'POST':
+        dados = json.loads(request.body)
+        token = dados['token']
+        try:
+            x = Token.objects.get(token=token)
+            x.delete()
+        except:
+            x = None
+    return JsonResponse({})
+
 def teste(request):
     return HttpResponse('123');
