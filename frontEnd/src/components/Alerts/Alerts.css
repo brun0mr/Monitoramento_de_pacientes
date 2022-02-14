@@ -20,3 +20,22 @@
     text-align: justify;
     align-items: center;
 }
+
+.alerts_row{
+    position: relative;
+    width: 100%;
+    top: 100px;
+    height: calc(100% - 100px);
+    overflow-y: scroll;
+}
+
+.alerts_background{
+    background-color: white;
+}
+
+.grid-container-l_alerts {
+    display: grid;
+    grid-template-columns: 128px 30% 20% 20% auto;
+    grid-gap: 0.5%;
+    padding: 0.3%;
+}
