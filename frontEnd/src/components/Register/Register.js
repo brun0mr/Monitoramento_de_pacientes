@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "reactstrap";
 import "./Register.css";
+import { Navigate, useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
 
 export default function Register() {
   const [submissionAns, setSubmissionAns] = useState(""); // retorno do servidor sobre a tentativa de cadastro
 
   const [med_paci, set_med_paci] = useState('');
   const [nome, set_nome] = useState('');
+  const [username, set_username] = useState('');
   const [cpf, set_cpf] = useState('');
   const [senha, set_senha] = useState('');
   const [conf_senha, set_conf_senha] = useState('');
@@ -16,24 +19,32 @@ export default function Register() {
   const [email, set_email] = useState('');
   const [comorbidades, set_comorbidades] = useState('');
   const [nome_parente, set_nome_parente] = useState('');
-  const [tel_parenet, set_tel_parente] = useState('');
+  const [tel_parente, set_tel_parente] = useState('');
   const [email_parente, set_email_parente] = useState('');
   const [cep, set_cep] = useState('');
   const [endereco, set_endereco] = useState('');
   const [especialidade, set_especialidade] = useState('');
+
+  let navigate = useNavigate();
 
   // useEffect(() => {
   //   console.log(med_paci);
   // }, [med_paci]);
 
 
-  const onSubmit = () => {
-    fetch("http://127.0.0.1:8000/api/register/", {
+  const onSubmit = async function () {
+    const response = await fetch("http://127.0.0.1:8000/api/register/", {
       method: "POST",
-      body: JSON.stringify({}),
+      body: JSON.stringify({token: Cookies.get('token'),type: med_paci, name: nome, username:username, cpf: cpf,
+        password: senha, conf_password: conf_senha, sexo: sexo, idade:idade,
+          telefone: telefone, email: email, comorbidades: comorbidades, nome_parente,
+            tel_parente: tel_parente, email_parente: email_parente, cep: cep, endereco: endereco,
+              especialidade: especialidade}),
     });
 
-    const response = fetch("http://127.0.0.1:8000/api/login/status");
+    const data = await response.json();
+    if(data.status == 'ok'){ navigate('/'); }
+    
     // setSubmissionAns('failed');
     // const data = response.json();
     // if(data.submissionAns == 'true'){
@@ -110,6 +121,16 @@ export default function Register() {
           id="name"
           onChange={(e) => {
             set_nome(e.target.value);
+          }}
+        ></input>
+        <br />
+        <label for="username">Username:</label>
+        <br />
+        <input
+          type="text"
+          id="username"
+          onChange={(e) => {
+            set_username(e.target.value);
           }}
         ></input>
         <br />

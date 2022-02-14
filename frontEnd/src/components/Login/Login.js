@@ -54,7 +54,7 @@ export default function Login(){
     // jsx do formulario de login
     let login_form_jsx = (
       <form>
-        <input type="radio" id="medico" name="fav_language" value="medico" />
+        {/* <input type="radio" id="medico" name="fav_language" value="medico" />
         <label for="medico">Médico</label>
         <br />
         <input
@@ -64,7 +64,7 @@ export default function Login(){
           value="paciente"
         />
         <label for="paciente">Paciente</label>
-        <br />
+        <br /> */}
         <label for="user">Username: </label>
         <br />
         <input type="text" id="user" onChange={onChangeUser}></input>

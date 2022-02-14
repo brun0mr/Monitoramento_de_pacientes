@@ -1,4 +1,3 @@
-
 from rest_framework import generics
 from django.views.decorators.csrf import csrf_exempt
 from .serializers import MedicoSerializer, DadosSerializer, PacienteSerializer, SensorSerializer
@@ -48,7 +47,7 @@ def login_api(request):
             eh_medico = 1
         except:
             eh_medico = 0
-            
+
         if user is not None:
             Token.objects.create(user=user)
             token = Token.objects.get(user=user)
@@ -94,4 +93,77 @@ def lista_paciente(request):
             return JsonResponse(l)
 
     return JsonResponse({})
+
+@csrf_exempt
+def register(request):
+    #verificar se o token é de um medico que pode cadastrar
+    if request.method == 'POST':
+        autorizado = False
+        try:
+            dados = json.loads(request.body)
+            token = dados['token']
+            Medico.objects.get(Token=token)
+            autorizado = True
+        except:
+            autorizado = False
+            return JsonResponse({'status': 'error'})
+
+        # cadastrar
+        try:
+            dados = json.loads(request.body)
+            nome = dados['name']
+            username = dados['username']
+            cpf = dados['cpf']
+            password = dados['password']
+            sexo = dados['sexo']
+            idade = dados['idade']
+            telefone = dados['telefone']
+            email = dados['email']
+            comorbidades = dados['comorbidades']
+            nome_parente = dados['nome_parente']
+            tel_parente = dados['tel_parente']
+            email_parente = dados['email_parente']
+            cep = dados['cep']
+            endereco = dados['endereco']
+            especialidade = dados['especialidade']
+            if dados['type'] == 'medico':
+                Medico.objects.create(
+                    CPF=cpf,
+                    Nome=nome,
+                    Idade=idade,
+                    Sexo = sexo,
+                    Especialidade=especialidade,
+                    CEP = cep,
+                    Endereco=endereco,
+                    Usuario=username,
+                )
+                User.objects.create(
+                    username=username,
+                    password=password
+                )
+            elif dados['type'] == 'paciente':
+                print('ok0')
+                medico = Medico.objects.last()
+                Paciente.objects.create(
+                    CPF=cpf,
+                    Nome=nome,
+                    Idade=idade,
+                    Sexo = sexo,
+                    Comorbidades=comorbidades,
+                    CEP=cep,
+                    Endereco=endereco,
+                    Responsavel=nome_parente,
+                    Telefone_Responsavel=tel_parente,
+                    Usuario=username,
+                    Id_Medico=medico,
+                )
+                User.objects.create(
+                    username=username,
+                    password=password
+                )
+            return JsonResponse({'status': 'ok'})
+        except:
+            print()
+            return JsonResponse({'status': 'error'})
+    return JsonResponse({'status': 'error'})
 
