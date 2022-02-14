@@ -89,7 +89,7 @@ def lista_paciente(request):
             pacientes = Paciente.objects.all()
             l = {}
             for paciente in pacientes:
-                l[paciente.Nome] = str([0,randint(36, 42),randint(60,130),randint(80, 100), randint(400, 500)])
+                l[paciente.Nome] = str([paciente.Id_paciente,randint(36, 42),randint(60,130),randint(80, 100), randint(400, 500)])
             return JsonResponse(l)
 
     return JsonResponse({})
