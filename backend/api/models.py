@@ -12,9 +12,8 @@ class Medico(models.Model):
     CEP =       models.IntegerField( blank=False)
     Endereco =  models.CharField(max_length=255,blank=False)
     Usuario =    models.CharField(max_length=255,blank=False, unique=True)
-    Senha =     models.CharField(max_length=50)
-    def __str__ (self):
-        return self.Id_Medico
+    # Senha =     models.CharField(max_length=50)
+    Token = models.CharField(max_length=45, blank=True)
     
 class Paciente(models.Model):
     Id_paciente = models.BigAutoField(primary_key=True)
@@ -28,17 +27,14 @@ class Paciente(models.Model):
     Responsavel = models.CharField(max_length=255,blank=True)
     Telefone_Responsavel = models.IntegerField(blank=True)
     Usuario =    models.CharField(max_length=255,blank=False, unique=True)
-    Senha =      models.CharField(max_length=50)
+    # Senha =      models.CharField(max_length=50)
     Id_Medico =  models.ForeignKey(Medico, on_delete=models.CASCADE)
-    def __str__ (self):
-        return self.Id_paciente
-    
+    Token = models.CharField(max_length=45, blank=True)
+
 class Sensor(models.Model):
     Id_Sensor= models.BigAutoField(primary_key=True)
     Id_Medico =  models.ForeignKey(Medico, on_delete=models.CASCADE)
     Id_Paciente = models.OneToOneField(Paciente, on_delete=models.CASCADE)
-    def __str__ (self):
-        return self.Id_Sensor
     
 class Dados(models.Model):
     Id_Sensor= models.ForeignKey(Sensor,on_delete=models.CASCADE, primary_key=True)
@@ -47,5 +43,3 @@ class Dados(models.Model):
     Oxigenacao = models.FloatField(max_length=10, blank=True)
     Frequencia_Cardiaca = models.FloatField(max_length=10, blank=True)
     Data_Hora = models.DateTimeField()
-    def __str__ (self):
-        return self.Id_Sensor

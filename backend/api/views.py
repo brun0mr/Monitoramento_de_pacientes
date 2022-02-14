@@ -15,7 +15,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
 from .models import Medico
-from .form import Login_Form
 
 from django.shortcuts import redirect, render
 
@@ -37,31 +36,31 @@ class SensorView (generics.ListCreateAPIView):
     queryset = Sensor.objects.all()
     serializer_class = SensorSerializer
 
-@api_view(['POST'])
+# @api_view(['POST'])
+@csrf_exempt
 def login_api(request):
-    # result =  str({'status': 'failed', 'token': ''})
-    # if request.method == 'POST':
-    #     dados_recebidos = json.loads(request.body)
-    #     print(dados_recebidos)
-    #     check_user = dados_recebidos['username']
-    #     check_pass = dados_recebidos['password']
-    #     try:
-    #         user = User.objects.get(username=check_user)
-    #     except:
-    #         user = None
+    result = {'status': 'failed', 'token': ''}
+    if request.method == 'POST':
+        dados_recebidos = json.loads(request.body)
+        # print(dados_recebidos)
+        check_user = dados_recebidos['username']
+        check_pass = dados_recebidos['password']
+        # print("%s %s" % (check_user, check_pass))
+        try:
+            user = User.objects.get(username=check_user)
+        except:
+            user = None
 
-        # if user is not None:
-            # Token.objects.create(user=user)
-            # token = Token.objects.get(user=user)
-            # a = Medico.objects.get(Usuario=check_user)
-            # a.Token = str(token)
-            # a.save()
-            # print('ok1')
-            # result = str({'status': 'connected','token': str(token)})
-    # print(type(result))
-    # print(result)
-    a = {'teste': 'testador'}
-    return JsonResponse(a)
+        if user is not None:
+            Token.objects.create(user=user)
+            token = Token.objects.get(user=user)
+            a = Medico.objects.get(Usuario=check_user)
+            a.Token = str(token)
+            a.save()
+            print('ok1')
+            result = ({'status': 'connected','token': str(token)})
+    print(result)
+    return JsonResponse(result)
 
 def teste(request):
     return HttpResponse('123');

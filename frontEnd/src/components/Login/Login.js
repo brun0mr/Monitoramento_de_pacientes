@@ -15,7 +15,7 @@ export default function Login(){
     const onSubmit = () => {
       const response = fetch('http://127.0.0.1:8000/api/login/', {
           method: "POST",
-          body: JSON.stringify({user: user, password: pass})
+          body: JSON.stringify({username: user, password: pass})
       });
 
       // setSubmissionAns('failed');
