@@ -11,7 +11,9 @@ class Medico(models.Model):
     Especialidade = models.CharField(max_length=255,blank=False)
     CEP =       models.IntegerField( blank=False)
     Endereco =  models.CharField(max_length=255,blank=False)
+    Email =  models.CharField(max_length=255,blank=False,default='?')
     Usuario =    models.CharField(max_length=255,blank=False, unique=True)
+    Telefone = models.CharField(max_length=255,blank=False,default='?')
     # Senha =     models.CharField(max_length=50)
     Token = models.CharField(max_length=45, blank=True)
     
@@ -27,6 +29,8 @@ class Paciente(models.Model):
     Responsavel = models.CharField(max_length=255,blank=True)
     Telefone_Responsavel = models.IntegerField(blank=True)
     Usuario =    models.CharField(max_length=255,blank=False, unique=True)
+    Email =  models.CharField(max_length=255,blank=False,default='?')
+    Telefone = models.CharField(max_length=255,blank=False,default='?')
     # Senha =      models.CharField(max_length=50)
     Id_Medico =  models.ForeignKey(Medico, on_delete=models.CASCADE)
     Token = models.CharField(max_length=45, blank=True)

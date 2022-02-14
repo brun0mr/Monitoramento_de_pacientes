@@ -174,13 +174,15 @@ def register(request):
                     CEP = cep,
                     Endereco=endereco,
                     Usuario=username,
+                    Email=email,
+                    Telefone=telefone,
                 )
                 User.objects.create(
                     username=username,
                     password=password
                 )
             elif dados['type'] == 'paciente':
-                print('ok0')
+                # print('ok0')
                 medico = Medico.objects.last()
                 Paciente.objects.create(
                     CPF=cpf,
@@ -194,6 +196,8 @@ def register(request):
                     Telefone_Responsavel=tel_parente,
                     Usuario=username,
                     Id_Medico=medico,
+                    Email=email,
+                    Telefone=telefone,
                 )
                 User.objects.create(
                     username=username,
@@ -204,4 +208,21 @@ def register(request):
             print()
             return JsonResponse({'status': 'error'})
     return JsonResponse({'status': 'error'})
+
+@csrf_exempt
+def lista_medicos(request):
+    medicos = Medico.objects.all()
+
+    enviar = {}
+    for medico in medicos:
+        nome = medico.Nome
+        email = medico.Email
+        telefone = medico.Telefone
+        id = medico.Id_Medico
+
+        enviar[nome] = "%d %s %s" % (id, email, telefone)
+        # print(enviar[nome])
+
+
+    return JsonResponse(enviar)
 

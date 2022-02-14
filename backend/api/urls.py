@@ -10,6 +10,7 @@ urlpatterns = [
     path('login/', views.login_api),
     path('disconnect/', views.disconnect),
     path('lista_paciente/', views.lista_paciente),
+    path('lista_medicos/', views.lista_medicos),
     path('receive_data/', views.receive_data),
     path('register/', views.register)
 ]
