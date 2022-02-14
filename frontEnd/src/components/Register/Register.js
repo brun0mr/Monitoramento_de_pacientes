@@ -11,6 +11,7 @@ export default function Register() {
   const [senha, set_senha] = useState('');
   const [conf_senha, set_conf_senha] = useState('');
   const [sexo, set_sexo] = useState('');
+  const [idade, set_idade] = useState('');
   const [telefone, set_telefone] = useState('');
   const [email, set_email] = useState('');
   const [comorbidades, set_comorbidades] = useState('');
@@ -109,6 +110,33 @@ export default function Register() {
           id="name"
           onChange={(e) => {
             set_nome(e.target.value);
+          }}
+        ></input>
+        <br />
+
+        <input
+          type="radio"
+          id="masculino"
+          name="sexo"
+          onChange={(e) => set_sexo("m")}
+        />
+        <label for="masculino">Masculino</label>
+        <br />
+        <input
+          type="radio"
+          id="feminino"
+          name="sexo"
+          onChange={(e) => set_sexo("f")}
+        />
+        <label for="feminino">Feminino</label>
+        <br />
+
+        <label for="idade">Idade:</label>
+        <input
+          type="text"
+          id="idade"
+          onChange={(e) => {
+            set_idade(e.target.value);
           }}
         ></input>
         <br />
