@@ -10,6 +10,7 @@ from rest_framework.authtoken.models import Token
 from .models import Medico
 
 from random import randint
+import datetime
 
 # Create your views here.
 
@@ -75,12 +76,52 @@ def disconnect(request):
     return JsonResponse({})
 
 @csrf_exempt
+def receive_data(request):
+    
+    if request.method == 'POST':
+        # Id_Sensor = "1"
+        # temp = randint(36, 42)
+        # bpm = randint(60,130)
+        # oxi = randint(80, 100)
+        # pressao = randint(400, 500)
+
+
+        dados = json.loads(request.body)
+        temp = dados['Temperatura']
+        bpm = dados['Frequencia_Cardiaca']
+        oxi = dados['Oxigenacao']
+        pressao = dados['Pressao']
+        Id_Sensor = dados['Id_Sensor']
+        Data_Hora = dados['Data_Hora']
+        print('ok0')
+        try:
+            sensor = Sensor.objects.get(Id_Sensor=Id_Sensor)
+        except:
+            print('erro sensor')
+
+        print('ok1')
+        Dados.objects.create(
+            Id_Sensor = sensor,
+            Temperatura=temp,
+            Pressao = pressao,
+            Oxigenacao=oxi,
+            Frequencia_Cardiaca = bpm,
+            Data_Hora=datetime.datetime.now(),
+        )
+        print('ok2')
+        Dados.objects.create()
+
+        print('ok3')
+    return JsonResponse({})
+
+@csrf_exempt
 def lista_paciente(request):
     if request.method == 'POST':
         autorizado = False
         try:
             dados = json.loads(request.body)
             token = dados['token']
+            Medico.objects.get(Token=token)
             Medico.objects.get(Token=token)
             autorizado = True
         except:
