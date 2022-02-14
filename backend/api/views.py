@@ -10,7 +10,7 @@ from .forms import UserForm
 
 # Create your views here.
 
-def home(request):
+def cadastro(request):
     template_name = 'home.html'
     context = {}
     if request.method == 'POST':
@@ -69,4 +69,19 @@ class PacienteView (generics.ListCreateAPIView):
 class SensorView (generics.ListCreateAPIView):
     queryset = Sensor.objects.all()
     serializer_class = SensorSerializer
-   
+
+
+#configurar react
+def contato(request):
+    template_name = 'user_profile.html'
+    return render(request, template_name, {})
+
+#configurar react
+def Alerts(request):
+    template_name = 'user_profile.html'
+    return render(request, template_name, {})
+
+#configurar react
+def About(request):
+    template_name = 'user_profile.html'
+    return render(request, template_name, {})
