@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "reactstrap";
 import './Login.css';
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import AuthContext, { useAuth } from "../../context/auth-context";
 import Cookies from 'js-cookie';
 
@@ -10,23 +10,28 @@ export default function Login(){
     const [user, setUser] = useState(""); // usuario
     const [auth, setAuth] = useAuth();
     const [submissionAns, setSubmissionAns] = useState(''); // retorno do servidor sobre a tentativa de login
+    let navigate = useNavigate();
 
     // na submissão, usuario e senha são enviados para o servidor e a resposta é salva no navegador como cookie, token, usuario e se esta logado
-    const onSubmit = () => {
-      const response = fetch('http://127.0.0.1:8000/api/login/', {
+    const onSubmit = async function () {
+      const response = await fetch('http://127.0.0.1:8000/api/login/', {
           method: "POST",
           body: JSON.stringify({username: user, password: pass})
       });
 
-      // setSubmissionAns('failed');
-      setSubmissionAns('failed');
-      // const data = response.json();
-      // if(data.submissionAns == 'true'){
-        // setSubmissionAns(data.submissionAns);
-        // Cookies.set('username', data.username);
-        // Cookies.set('isLoggedIn', data.isLoggedIn);
-        // Cookies.set('token', data.token);
-      // }
+      const data = await response.json();
+      console.log(data.status);
+      if(data.status == 'failed'){
+        setSubmissionAns('failed');
+      }
+      else{
+        console.log('sucesso');
+        setSubmissionAns('success');
+        Cookies.set('username', user);
+        Cookies.set('isLoggedIn', '1');
+        Cookies.set('token', data.token);
+        navigate('/'); 
+      }
       
     }
 

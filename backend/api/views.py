@@ -36,7 +36,6 @@ class SensorView (generics.ListCreateAPIView):
     queryset = Sensor.objects.all()
     serializer_class = SensorSerializer
 
-# @api_view(['POST'])
 @csrf_exempt
 def login_api(request):
     result = {'status': 'failed', 'token': ''}
