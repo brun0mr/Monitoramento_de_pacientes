@@ -6,7 +6,7 @@ const char* ssid = "REPLACE_WITH_YOUR_SSID";
 const char* password = "REPLACE_WITH_YOUR_PASSWORD";
 
 //Your Domain name with URL path or IP address with path
-const char* serverName = "http://192.168.1.106:1880/update-sensor";
+const char* serverName = "http://localhost:8000/api/receive_data/";
 
 // the following variables are unsigned longs because the time, measured in
 // milliseconds, will quickly become a bigger number than can be stored in an int.

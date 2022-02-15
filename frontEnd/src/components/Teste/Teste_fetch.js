@@ -5,14 +5,14 @@ export default function Teste_fetch(){
     const [daata, setData] = useState('');
     let print = '';
 
-    const load_data = async() =>{
-        const response = await fetch('http://127.0.0.1:8000/api/json_response/', {
+    const load_data = async function() {
+        const response = await fetch('http://127.0.0.1:8000/api/login/', {
             method: "POST",
             body: JSON.stringify({})
         });
         const data = await response.json();   
         setData(data);
-        // console.log(data.json());
+        console.log(data);
     }
 
     

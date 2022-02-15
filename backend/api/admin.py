@@ -1,8 +1,6 @@
 from django.contrib import admin
-
-# Register your models here.
 from .models import Medico, Paciente, Sensor, Dados
-
+# Register your models here.
 
 admin.site.register(Medico)
 admin.site.register(Paciente)

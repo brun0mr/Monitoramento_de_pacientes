@@ -1,22 +1,15 @@
+from atexit import register
 from django.urls import path
-from .views import cadastro, user_login, user_profile, user_logout, DadosView, MedicoView, PacienteView, SensorView, contato, Alerts, About
-
+from .views import DadosView, MedicoView, PacienteView, SensorView, login_api 
+from . import views
 urlpatterns = [
-    
-
-
-    path('cadastrar', cadastro),
-    path('login/', user_login, name='user_login'),
-    path('logout/', user_logout),
-    path('profile/', user_profile, name='user_profile'),
-    path('Contact', contato),
-    path('Alerts', Alerts),
-    path('About', About),
-
-
-    path('dados', DadosView.as_view()),
-    path('medico', MedicoView.as_view()),
-    path('paciente', PacienteView.as_view()),
-    path('sensor', SensorView.as_view())
-    
+    path('login/', views.login_api),
+    path('disconnect/', views.disconnect),
+    path('receive_data/', views.receive_data),
+    path('register/', views.register),
+    path('lista_paciente/', views.lista_paciente),
+    path('lista_dados/', views.lista_dados),
+    path('lista_sensores/', views.lista_sensores),
+    path('lista_medicos/', views.lista_medicos),
+    path('lista_notificacoes/', views.lista_notificacoes)
 ]

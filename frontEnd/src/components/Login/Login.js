@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "reactstrap";
 import './Login.css';
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import AuthContext, { useAuth } from "../../context/auth-context";
 import Cookies from 'js-cookie';
 
@@ -10,23 +10,29 @@ export default function Login(){
     const [user, setUser] = useState(""); // usuario
     const [auth, setAuth] = useAuth();
     const [submissionAns, setSubmissionAns] = useState(''); // retorno do servidor sobre a tentativa de login
+    let navigate = useNavigate();
 
     // na submissão, usuario e senha são enviados para o servidor e a resposta é salva no navegador como cookie, token, usuario e se esta logado
-    const onSubmit = () => {
-      const response = fetch('http://127.0.0.1:8000/api/login/', {
+    const onSubmit = async function () {
+      const response = await fetch('http://127.0.0.1:8000/api/login/', {
           method: "POST",
-          body: JSON.stringify({user: user, password: pass})
+          body: JSON.stringify({username: user, password: pass})
       });
 
-      // setSubmissionAns('failed');
-      setSubmissionAns('failed');
-      // const data = response.json();
-      // if(data.submissionAns == 'true'){
-        // setSubmissionAns(data.submissionAns);
-        // Cookies.set('username', data.username);
-        // Cookies.set('isLoggedIn', data.isLoggedIn);
-        // Cookies.set('token', data.token);
-      // }
+      const data = await response.json();
+      console.log(data);
+      if(data.status == 'failed'){
+        setSubmissionAns('failed');
+      }
+      else{
+        console.log('sucesso');
+        setSubmissionAns('success');
+        Cookies.set('username', user);
+        Cookies.set('isLoggedIn', '1');
+        Cookies.set('medico', data.medico);
+        Cookies.set('token', data.token);
+        navigate('/'); 
+      }
       
     }
 
@@ -48,7 +54,7 @@ export default function Login(){
     // jsx do formulario de login
     let login_form_jsx = (
       <form>
-        <input type="radio" id="medico" name="fav_language" value="medico" />
+        {/* <input type="radio" id="medico" name="fav_language" value="medico" />
         <label for="medico">Médico</label>
         <br />
         <input
@@ -58,7 +64,7 @@ export default function Login(){
           value="paciente"
         />
         <label for="paciente">Paciente</label>
-        <br />
+        <br /> */}
         <label for="user">Username: </label>
         <br />
         <input type="text" id="user" onChange={onChangeUser}></input>
