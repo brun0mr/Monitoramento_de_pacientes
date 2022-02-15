@@ -1,41 +1,65 @@
-.alerts_container{
+.page-alerts{
     position: fixed;
     left: 250px;
+    background-color: antiquewhite;
     display: flex;
+    justify-content: center;
+    width: calc(100% - 250px);
+    height: 100%;
+}
+
+.grid-container-alerts {
+    display: grid;
+    grid-template-columns: 500px 500px;
+    grid-gap: 0.5%;
+    padding: 0.3%;
+    justify-content: center;
+}
+
+.grid-container-alerts > .item {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.8);
+    height: 128px;
     align-items: center;
     justify-content: center;
-    height: 100%;
-    width: calc(100% - 250px);
-    background-color: black;
-    background-image: url('https://image.freepik.com/fotos-gratis/vista-de-fundo-abstrata-do-fundo-abstrato-borrada-em-direcao-ao-vazio-do-lobby-do-escritorio-e-portas-de-entrada-e-cortina-de-vidro-com-quadro_1339-6364.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    padding-top: 4px;
+    font-size: 100%;
 }
-
-.alerts_text{
-    height: 500px;
-    width: calc(100% - 200px);
+.button_l {
     display: flex;
-    text-align: justify;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.8);
+    height: 128px;
     align-items: center;
+    justify-content: center;
+    padding-top: 4px;
+    font-size: 100%;
 }
 
-.alerts_row{
-    position: relative;
+.button_l Button{
+    margin: 0px 5px 0px 5px;
+}
+
+.patient_row-alerts {
+    position: absolute;
     width: 100%;
     top: 100px;
     height: calc(100% - 100px);
     overflow-y: scroll;
 }
 
-.alerts_background{
-    background-color: white;
+.img_profile{
+    width: 128px;
+    height: 128px;
 }
 
-.grid-container-l_alerts {
-    display: grid;
-    grid-template-columns: 128px 30% 20% 20% auto;
-    grid-gap: 0.5%;
-    padding: 0.3%;
+.op_lista-alerts {
+    position: fixed;
+    top: 100px;
+    display: flex;
+}
+
+.op_lista-alerts > Button{
+    margin-left: 15px;
+    margin-right: 15px;
 }
